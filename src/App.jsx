@@ -5,7 +5,7 @@ import FloatingOrb from './components/FloatingOrb';
 import GlitchText from './components/GlitchText';
 // Shadcn UI / Radix UI components
 import { Button } from './components/Button';
-import { Card, CardHeader, CardContent, CardTitle, CardDescription } from './components/card';
+import { Card, CardHeader, CardContent, CardTitle, CardDescription } from './components/Card';
 import { Badge } from './components/badge';
 // Icons (lucide-react)
 import { Mail, Terminal, Code, Database, ExternalLink, Calendar, Cpu, Globe, Zap } from 'lucide-react';
