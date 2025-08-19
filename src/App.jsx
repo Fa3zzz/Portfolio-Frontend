@@ -25,65 +25,55 @@ function App() {
   useEffect(() => {
     // Async function to handle all data fetching
     const fetchData = async () => {
-      try {
-        console.log('Starting data fetch...');
-        
-        // Fetch 'who' data from the Express backend
-        console.log('Fetching who data...');
-        const whoResponse = await fetch('http://localhost:3001/api/who');
-        console.log('Who response:', whoResponse.status, whoResponse.statusText);
-        
-        if (!whoResponse.ok) {
-          throw new Error(`Failed to fetch About Me data: ${whoResponse.status}`);
+        try {
+          console.log('Starting data fetch...');
+          const baseUrl = import.meta.env.VITE_API_URL;
+      
+          // Fetch 'who' data
+          console.log('Fetching who data...');
+          const whoResponse = await fetch(`${baseUrl}/api/who`);
+          console.log('Who response:', whoResponse.status, whoResponse.statusText);
+          if (!whoResponse.ok) throw new Error(`Failed to fetch About Me data: ${whoResponse.status}`);
+          const whoJson = await whoResponse.json();
+          console.log('Who data:', whoJson);
+          setWhoData(whoJson);
+      
+          // Fetch skills data
+          console.log('Fetching skills data...');
+          const skillsResponse = await fetch(`${baseUrl}/api/skills`);
+          console.log('Skills response:', skillsResponse.status, skillsResponse.statusText);
+          if (!skillsResponse.ok) throw new Error(`Failed to fetch skills: ${skillsResponse.status}`);
+          const skillsJson = await skillsResponse.json();
+          console.log('Skills data:', skillsJson);
+          setSkillsData(skillsJson);
+      
+          // Fetch projects data
+          console.log('Fetching projects data...');
+          const projectResponse = await fetch(`${baseUrl}/api/projects`);
+          console.log('Projects response:', projectResponse.status, projectResponse.statusText);
+          if (!projectResponse.ok) throw new Error(`Failed to fetch projects: ${projectResponse.status}`);
+          const projectJson = await projectResponse.json();
+          console.log('Projects data:', projectJson);
+          setProjectData(projectJson);
+      
+          // Fetch experience data
+          console.log('Fetching experience data...');
+          const experienceResponse = await fetch(`${baseUrl}/api/experience`);
+          console.log('Experience response:', experienceResponse.status, experienceResponse.statusText);
+          if (!experienceResponse.ok) throw new Error(`Failed to fetch experience data: ${experienceResponse.status}`);
+          const experienceJson = await experienceResponse.json();
+          console.log('Experience data:', experienceJson);
+          setExperienceData(experienceJson);
+      
+          console.log('All data fetched successfully!');
+        } catch (e) {
+          console.error('Fetch error:', e);
+          setError(e.message);
+        } finally {
+          setIsLoading(false);
         }
-        const whoJson = await whoResponse.json();
-        console.log('Who data:', whoJson);
-        setWhoData(whoJson);
-
-        // Fetch skills data
-        console.log('Fetching skills data...');
-        const skillsResponse = await fetch('http://localhost:3001/api/skills');
-        console.log('Skills response:', skillsResponse.status, skillsResponse.statusText);
-        
-        if (!skillsResponse.ok) {
-          throw new Error(`Failed to fetch skills: ${skillsResponse.status}`);
-        }
-        const skillsJson = await skillsResponse.json();
-        console.log('Skills data:', skillsJson);
-        setSkillsData(skillsJson);
-
-        // Fetch projects data
-        console.log('Fetching projects data...');
-        const projectResponse = await fetch('http://localhost:3001/api/projects');
-        console.log('Projects response:', projectResponse.status, projectResponse.statusText);
-        
-        if (!projectResponse.ok) {
-          throw new Error(`Failed to fetch projects: ${projectResponse.status}`);
-        }
-        const projectJson = await projectResponse.json();
-        console.log('Projects data:', projectJson);
-        setProjectData(projectJson);
-
-        // Fetch experience data
-        console.log('Fetching experience data...');
-        const experienceResponse = await fetch('http://localhost:3001/api/experience');
-        console.log('Experience response:', experienceResponse.status, experienceResponse.statusText);
-        
-        if (!experienceResponse.ok) {
-          throw new Error(`Failed to fetch experience data: ${experienceResponse.status}`);
-        }
-        const experienceJson = await experienceResponse.json();
-        console.log('Experience data:', experienceJson);
-        setExperienceData(experienceJson);
-
-        console.log('All data fetched successfully!');
-      } catch (e) {
-        console.error('Fetch error:', e);
-        setError(e.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      };
+      
 
     fetchData();
   }, []); // The empty dependency array ensures this effect runs only once
