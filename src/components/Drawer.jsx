@@ -4,7 +4,7 @@ import * as React from "react";
 import * as DrawerPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 
-import { cn } from "./utils";
+import { cn } from "./Utils";
 
 export const Drawer = DrawerPrimitive.Root;
 export const DrawerTrigger = DrawerPrimitive.Trigger;

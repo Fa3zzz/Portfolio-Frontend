@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Recharts from "recharts";
-import { cn } from "./utils";
+import { cn } from "./Utils";
 
 const THEMES = { light: "", dark: ".dark" };
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { CheckIcon } from "lucide-react";
-import { cn } from "./utils";
+import { cn } from "./Utils";
 
 export function Checkbox({ className, ...props }) {
   return (
